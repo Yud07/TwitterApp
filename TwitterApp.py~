@@ -1,0 +1,13 @@
+#!/usr/bin python2.7
+__author__ = 'myudy_000'
+
+import twitter
+
+consumer_key = "dNlASoTd86Tl2yqRuUBCt4y1Y"
+consumer_secret = "FUcNC5x8YR5PUbJrzsuOebBoUJqufVExjtN7RJGad2xPKxILBm"
+access_key = "453566057-0G6Iph7bTRhDA6d2h96SZWBi6yinsmnqoHgWKt18"
+access_secret = "DnYh4sys3vlh1kmG4Kc5OusfzQyCd6UoLzlHax3pOdowO"
+
+api = twitter.Api(consumer_key, consumer_secret, access_key, access_secret)
+
+print 'Hi'

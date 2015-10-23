@@ -1,0 +1,9 @@
+Matt Yudysky Twitter App for Rue La La Internship
+
+You need to edit the .py and add your own consumer and access informaion.
+to run, just cd to the folder and type ./TwitterApp.py
+The prompts provide all the necessary instructions for operation.
+
+Note: I think that the api.GetUserTimeline command is broken. Regardless of
+the User ID or Screen Name you provide it, it only retrieves the authorizer's
+(my) timeline. This effects the Search From Person feature only.
