@@ -60,13 +60,9 @@ def search():
 						print "That was", overrun, "characters too long. Try again.\n"
 						search()
 					else:
-						if ascii(uid):
-							results = api.GetUserTimeline(user_id = uid)
+						results = api.GetUserTimeline(user_id = uid)
 						for s in [s for s in results if s.text.find(phrase) != -1]:
 							print "%s posted: %s" % (s.user.name, s.text)
-						else:
-							print "All characters must be ASCII. Try again.\n"
-							search()
 				elif nameType == 2:
 					sn = raw_input("Enter the Screen Name you would like to search for: ")
 					if len(sn) > 15:
@@ -88,13 +84,9 @@ def search():
 					print "That was", overrun, "characters too long. Try again.\n"
 					search()
 				else:
-					if ascii(uid):
-						results = api.GetSearch(term=uid, lang='en')
-						for s in [s for s in results if s.text.find(phrase) != -1]:
-							print "%s posted: %s" % (s.user.name, s.text)
-					else:
-						print "All characters must be ASCII. Try again.\n"
-						search()
+					results = api.GetSearch(term=uid, lang='en')
+					for s in [s for s in results if s.text.find(phrase) != -1 and s.text.find("RT") == -1]:
+						print "%s posted: %s" % (s.user.name, s.text)
 		else:
 			print "All characters must be ASCII. Try again.\n"
 			search()
@@ -104,15 +96,17 @@ def ascii(s):
 	return all(ord(c) < 128 for c in s)
 
 def main():
-	print "Would you like to:\n1. Post\n2. Search"
-	actionType = raw_input("Enter action type 1-2: ")
-	if actionType.isdigit() == False and actionType < 3 and actionType < 0:
-		print "Please enter an integer 1-2\n"
-		main()
-	else:
-		actionType = int(actionType)
-	if actionType == 1:
-		post()
-	elif actionType ==2:
-		search()
+	while True:
+		print "Would you like to:\n1. Post\n2. Search\n3. Exit"
+		actionType = raw_input("Enter action type 1-3: ")
+		if actionType.isdigit() == False and actionType < 4 and actionType < 0:
+			print "Please enter an integer 1-3\n"
+		else:
+			actionType = int(actionType)
+		if actionType == 1:
+			post()
+		elif actionType == 2:
+			search()
+		elif actionType == 3:
+			break
 main()
